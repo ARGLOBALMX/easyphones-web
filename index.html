@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyPhones – Tu teléfono, solo para llamar</title>
+<meta name="description" content="EasyPhones convierte cualquier teléfono Android o iPhone en un teléfono sencillo solo para llamadas: botones grandes, contactos rápidos y botón SOS. Ideal para adultos mayores, niños, empleados y conductores.">
+<link rel="icon" href="logo.png">
+<style>
+  :root{
+    --green:#12a150; --green-dark:#0b7a3b; --green-soft:#e8f7ee;
+    --ink:#14211a; --muted:#5b6b62; --line:#e3ebe6; --bg:#fbfdfc;
+    --red:#e5382f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:10;background:rgba(251,253,252,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;text-decoration:none}
+  .brand img{height:40px;width:auto}
+  .nav ul{display:flex;gap:28px;list-style:none}
+  .nav ul a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
+  .nav ul a:hover{color:var(--green-dark)}
+  .btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:999px;transition:background .15s}
+  .btn:hover{background:var(--green-dark)}
+  .btn.ghost{background:transparent;color:var(--green-dark);border:2px solid var(--green)}
+  .btn.ghost:hover{background:var(--green-soft)}
+  .nav .btn{padding:10px 20px;font-size:.95rem}
+
+  /* Hero */
+  .hero{padding:80px 0 72px}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .tag{display:inline-block;background:var(--green-soft);color:var(--green-dark);font-weight:700;font-size:.85rem;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+  h1{font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:20px}
+  h1 span{color:var(--green)}
+  .lead{font-size:1.2rem;color:var(--muted);max-width:34em;margin-bottom:32px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* Phone mockup */
+  .phone{width:290px;margin:0 auto;background:#111;border-radius:44px;padding:14px;box-shadow:0 30px 60px -20px rgba(11,122,59,.35)}
+  .screen{background:#fff;border-radius:32px;padding:26px 18px 22px;display:flex;flex-direction:column;gap:12px;min-height:540px}
+  .screen .top{text-align:center;font-weight:800;color:var(--green-dark);margin-bottom:4px}
+  .qc{display:flex;align-items:center;gap:12px;background:var(--green);color:#fff;border-radius:16px;padding:14px 16px;font-weight:700;font-size:1.05rem}
+  .qc i{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-style:normal}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+  .mini{border:2px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-weight:700;font-size:.9rem;color:var(--muted)}
+  .sos{background:var(--red);color:#fff;border-radius:16px;padding:14px;text-align:center;font-weight:800;letter-spacing:.08em}
+
+  /* Sections */
+  section{padding:84px 0}
+  .alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(1.8rem,3.5vw,2.5rem);letter-spacing:-.01em;line-height:1.15;margin-bottom:14px}
+  .sub{color:var(--muted);font-size:1.1rem;max-width:40em;margin-bottom:44px}
+  .grid{display:grid;gap:22px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+  .alt .card{background:var(--bg)}
+  .ic{width:52px;height:52px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center;font-size:1.6rem;margin-bottom:16px}
+  .card h3{font-size:1.15rem;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:.98rem}
+
+  /* Steps */
+  .steps{counter-reset:s}
+  .steps .card{position:relative;padding-top:64px}
+  .steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:22px;left:28px;width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:grid;place-items:center}
+
+  /* Pricing */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:860px}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px}
+  .plan.best{border:2px solid var(--green);position:relative}
+  .plan.best .badge{position:absolute;top:-14px;left:34px;background:var(--green);color:#fff;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:999px}
+  .plan h3{font-size:1.3rem}
+  .price{font-size:2.4rem;font-weight:800;margin:10px 0 2px}
+  .price small{font-size:1rem;color:var(--muted);font-weight:500}
+  .note{color:var(--muted);font-size:.92rem;margin-bottom:20px}
+  .plan ul{list-style:none;display:grid;gap:10px}
+  .plan li{padding-left:28px;position:relative}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .plan li.no{color:var(--muted)}
+  .plan li.no::before{content:"–";color:#aab5ae}
+
+  /* Download */
+  .download{text-align:center}
+  .download .sub{margin-left:auto;margin-right:auto}
+  .stores{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .store{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 22px;text-decoration:none;min-width:220px}
+  .store span{display:block;font-size:.75rem;opacity:.75}
+  .store b{font-size:1.1rem}
+  .store .sym{font-size:1.8rem}
+
+  /* Contact */
+  .contact{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:var(--green);color:#fff;border-radius:28px;padding:48px}
+  .contact h2{margin-bottom:6px}
+  .contact p{opacity:.9}
+  .contact .btn{background:#fff;color:var(--green-dark)}
+  .contact .btn:hover{background:var(--green-soft)}
+
+  footer{padding:36px 0;color:var(--muted);font-size:.92rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--muted)}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    .g3,.g4{grid-template-columns:1fr 1fr}
+    .nav ul{display:none}
+  }
+  @media (max-width:600px){
+    .g3,.g4,.plans{grid-template-columns:1fr}
+    .hero{padding:48px 0}
+    section{padding:60px 0}
+    .contact{padding:32px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand"><img src="logo.png" alt="" onerror="this.style.display='none'">EasyPhones</a>
+    <ul>
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#para-quien">Para quién</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#descargar" class="btn">Descargar</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="tag">Para Android y iPhone</span>
+        <h1>Tu teléfono, <span>solo para llamar.</span></h1>
+        <p class="lead">EasyPhones convierte cualquier smartphone en un teléfono sencillo: botones grandes para tus contactos más importantes, un botón SOS y nada que distraiga.</p>
+        <div class="cta">
+          <a href="#descargar" class="btn">Pruébala gratis 7 días</a>
+          <a href="#funciones" class="btn ghost">Cómo funciona</a>
+        </div>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="top">EasyPhones</div>
+          <div class="qc"><i>👩</i>Mamá</div>
+          <div class="qc"><i>👨</i>Papá</div>
+          <div class="qc"><i>👵</i>Abuela</div>
+          <div class="qc"><i>🏠</i>Casa</div>
+          <div class="qc"><i>🩺</i>Doctor</div>
+          <div class="row">
+            <div class="mini">📇 Contactos</div>
+            <div class="mini">🔢 Teclado</div>
+          </div>
+          <div class="sos">SOS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funciones" class="alt">
+    <div class="wrap">
+      <h2>Simple a propósito</h2>
+      <p class="sub">Todo lo necesario para llamar y nada más. Sin redes sociales, sin juegos, sin menús confusos.</p>
+      <div class="grid g3">
+        <div class="card"><div class="ic">⭐</div><h3>5 Contactos Rápidos</h3><p>Botones grandes con nombre y foto. Un toque y la llamada sale.</p></div>
+        <div class="card"><div class="ic">🆘</div><h3>Botón SOS</h3><p>Siempre visible, para llamar a emergencias o a un familiar en un instante.</p></div>
+        <div class="card"><div class="ic">📇</div><h3>Contactos del teléfono</h3><p>Acceso opcional a toda la agenda, solo si el administrador lo permite.</p></div>
+        <div class="card"><div class="ic">🔒</div><h3>Modo administrador</h3><p>Un familiar o la empresa configura los contactos con un PIN. El usuario solo llama.</p></div>
+        <div class="card"><div class="ic">📌</div><h3>Fija en pantalla</h3><p>En Android, la app se queda fija en pantalla para que no se salga por accidente.</p></div>
+        <div class="card"><div class="ic">🛡️</div><h3>Tus datos, en tu teléfono</h3><p>No enviamos tus contactos ni tus llamadas a ningún servidor. Sin anuncios.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="para-quien">
+    <div class="wrap">
+      <h2>Hecha para quien más lo necesita</h2>
+      <p class="sub">Un mismo teléfono, sin complicaciones, para personas que solo necesitan comunicarse.</p>
+      <div class="grid g4">
+        <div class="card"><div class="ic">👴</div><h3>Adultos mayores</h3><p>Letras y botones grandes. Llaman a su familia sin perderse en menús.</p></div>
+        <div class="card"><div class="ic">🧒</div><h3>Niños</h3><p>Pueden llamar a mamá, papá o la escuela, sin redes ni internet al alcance.</p></div>
+        <div class="card"><div class="ic">💼</div><h3>Empleados</h3><p>Teléfonos de empresa enfocados en el trabajo: solo los contactos que importan.</p></div>
+        <div class="card"><div class="ic">🚗</div><h3>Conductores</h3><p>Menos distracciones al volante, con los contactos clave a un toque.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Lista en 3 pasos</h2>
+      <p class="sub">La configuras una vez y listo.</p>
+      <div class="grid g3 steps">
+        <div class="card"><h3>Descarga EasyPhones</h3><p>Instálala desde Google Play o la App Store en el teléfono de quien la va a usar.</p></div>
+        <div class="card"><h3>Agrega los contactos</h3><p>Desde Ajustes, con tu PIN, elige hasta 5 Contactos Rápidos y el número de emergencia.</p></div>
+        <div class="card"><h3>Entrega el teléfono</h3><p>Desde ahora, el teléfono sirve solo para llamar. Fácil y sin sorpresas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="precios">
+    <div class="wrap">
+      <h2>Precios claros</h2>
+      <p class="sub">Descárgala gratis y prueba todas las funciones durante 7 días. Después, decide.</p>
+      <div class="plans">
+        <div class="plan">
+          <h3>Gratis</h3>
+          <div class="price">$0</div>
+          <p class="note">Para siempre</p>
+          <ul>
+            <li>1 Contacto Rápido</li>
+            <li>Botón de Contactos</li>
+            <li>Botón SOS</li>
+            <li class="no">Contactos Rápidos 2 a 5</li>
+            <li class="no">Teclado para marcar</li>
+          </ul>
+        </div>
+        <div class="plan best">
+          <span class="badge">7 días gratis</span>
+          <h3>Completa</h3>
+          <div class="price">$5 <small>USD · Latinoamérica</small></div>
+          <p class="note">$10 USD en el resto del mundo · pago único</p>
+          <ul>
+            <li>5 Contactos Rápidos</li>
+            <li>Botón de Contactos</li>
+            <li>Botón SOS</li>
+            <li>Teclado para marcar</li>
+            <li>Todas las funciones desbloqueadas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="descargar" class="alt download">
+    <div class="wrap">
+      <h2>Descarga EasyPhones</h2>
+      <p class="sub">Muy pronto en las tiendas oficiales.</p>
+      <div class="stores">
+        <a class="store" href="#descargar"><span class="sym">▶</span><div><span>Próximamente en</span><b>Google Play</b></div></a>
+        <a class="store" href="#descargar"><span class="sym">🍏</span><div><span>Próximamente en</span><b>App Store</b></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>¿Tienes preguntas?</h2>
+          <p>Escríbenos y con gusto te ayudamos a configurar EasyPhones.</p>
+        </div>
+        <a class="btn" href="mailto:arglobal3000@gmail.com">arglobal3000@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 EasyPhones · Alfonso Francisco Romero Pérez</span>
+    <a href="privacidad.html">Política de Privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>
