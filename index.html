@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-en="EasyPhones – Your phone, just for calls">EasyPhones – Tu teléfono, solo para llamar</title>
 <meta name="description" content="EasyPhones convierte cualquier teléfono Android o iPhone en un teléfono sencillo solo para llamadas: botones grandes, contactos rápidos y botón SOS. Ideal para adultos mayores, niños, empleados y conductores.">
-<link rel="icon" href="logo.png">
+<link rel="icon" href="Website%20logo%20(light)%402x.png">
 <style>
   :root{
     --green:#12a150; --green-dark:#0b7a3b; --green-soft:#e8f7ee;
@@ -135,7 +135,7 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="brand"><img src="logo.png" alt="" onerror="this.style.display='none'">EasyPhones</a>
+    <a href="#" class="brand"><img src="Website%20logo%20(light)%402x.png" alt="" onerror="this.style.display='none'">EasyPhones</a>
     <ul>
       <li><a href="#funciones" data-en="Features">Funciones</a></li>
       <li><a href="#para-quien" data-en="Who it’s for">Para quién</a></li>
@@ -287,7 +287,7 @@
 <footer>
   <div class="wrap">
     <span>© 2026 EasyPhones · Alfonso Francisco Romero Pérez</span>
-    <a href="privacidad.html" id="privlink" data-en="Privacy Policy">Política de Privacidad</a>
+    <span><a href="privacidad.html" id="privlink" data-en="Privacy Policy">Política de Privacidad</a> · <a href="terminos.html" id="termlink" data-en="Terms of Service">Condiciones del Servicio</a></span>
   </div>
 </footer>
 
@@ -315,6 +315,7 @@
     document.documentElement.lang=l;
     document.querySelectorAll('.lang button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang')===l); });
     var pl=document.getElementById('privlink'); if(pl) pl.href='privacidad.html'+(l==='en'?'?lang=en':'');
+    var tl=document.getElementById('termlink'); if(tl) tl.href='terminos.html'+(l==='en'?'?lang=en':'');
     try{ localStorage.setItem('ep-lang', l); }catch(e){}
     clock();
   }
