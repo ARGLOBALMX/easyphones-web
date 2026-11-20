@@ -10,11 +10,19 @@
   h2 { font-size: 1.2em; margin-top: 1.8em; }
   .fecha { color: #666; margin-top: 0; }
   a { color: #0b63c5; }
+  .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .lang { display:flex; border:1.5px solid #e3ebe6; border-radius:999px; overflow:hidden; font-size:.85rem; font-weight:700; }
+  .lang button { border:0; background:transparent; color:#5b6b62; padding:6px 12px; cursor:pointer; font:inherit; }
+  .lang button.on { background:#12a150; color:#fff; }
 </style>
 </head>
 <body>
 
-<p><a href="/">← Volver a EasyPhones</a></p>
+<div class="top">
+  <a href="/" id="back">← Volver a EasyPhones</a>
+  <div class="lang"><button type="button" data-lang="es" class="on">ES</button><button type="button" data-lang="en">EN</button></div>
+</div>
+<div id="es">
 <h1>Política de Privacidad de EasyPhones</h1>
 <p class="fecha">Última actualización: 19 de noviembre de 2026</p>
 
@@ -54,4 +62,62 @@
 Correo: <a href="mailto:arglobal3000@gmail.com">arglobal3000@gmail.com</a><br>
 Sitio web: <a href="https://easyphones.net">easyphones.net</a></p>
 
+</div>
+<div id="en" hidden>
+<h1>EasyPhones Privacy Policy</h1>
+<p class="fecha">Last updated: November 19, 2026</p>
+
+<p>This Privacy Policy describes how the <strong>EasyPhones</strong> application (the "App"), developed by <strong>Alfonso Francisco Romero Pérez</strong> (the "Developer"), handles its users' information. By using the App, you agree to what is described in this policy.</p>
+
+<h2>1. What the App does</h2>
+<p>EasyPhones turns a phone into a simple calling phone, with large "Quick Contacts" buttons, optional access to the phone's contacts, and an emergency (SOS) button. It is designed for seniors, children, employees, drivers, and anyone who needs a simple phone.</p>
+
+<h2>2. Information the App accesses</h2>
+<ul>
+  <li><strong>Contacts:</strong> the App may read, add, or delete contacts on the phone solely to display them and allow calling them, and only if the user or administrator authorizes it.</li>
+  <li><strong>Phone calls:</strong> the App uses the call permission solely to dial the numbers the user chooses.</li>
+  <li><strong>App settings:</strong> Quick Contacts, the administrator PIN or settings, and preferences are stored locally on the device.</li>
+</ul>
+
+<h2>3. Information we do NOT collect</h2>
+<p>EasyPhones <strong>does not send</strong> your contacts, call history, or personal data to the Developer's servers or to third parties. All information is stored and processed only on your device. The App contains no advertising or tracking tools.</p>
+
+<h2>4. Payments</h2>
+<p>Some features (additional Quick Contacts and the keypad) may require payment after the free trial period. In-app purchases are processed through <strong>Google Play</strong>. The Developer does not receive or store your card details. Google handles your data according to its own privacy policy.</p>
+
+<h2>5. Children</h2>
+<p>The App may be used by children under the supervision of a parent or guardian, who sets up the allowed contacts. EasyPhones does not knowingly collect personal information from children or share it with third parties.</p>
+
+<h2>6. Security</h2>
+<p>Because data stays on your device, its security also depends on your phone's protections (screen lock, system updates). We recommend keeping your device protected.</p>
+
+<h2>7. Data deletion</h2>
+<p>You can delete all information stored by the App by uninstalling it or clearing its data in Settings &gt; Apps &gt; EasyPhones &gt; Storage. Contacts saved in the phone's address book remain unless you delete them.</p>
+
+<h2>8. Changes to this policy</h2>
+<p>We may update this policy from time to time. Any changes will be posted on this same page with the new update date.</p>
+
+<h2>9. Contact</h2>
+<p>If you have questions about this Privacy Policy, write to us at:<br>
+<strong>Alfonso Francisco Romero Pérez</strong><br>
+Email: <a href="mailto:arglobal3000@gmail.com">arglobal3000@gmail.com</a><br>
+Website: <a href="https://easyphones.net">easyphones.net</a></p>
+</div>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search).get('lang'), l='es';
+  try{ l=q || localStorage.getItem('ep-lang') || ((navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en'); }catch(e){ l=q||'es'; }
+  function set(x){
+    document.getElementById('es').hidden=(x!=='es');
+    document.getElementById('en').hidden=(x!=='en');
+    document.documentElement.lang=x;
+    document.title=x==='en'?'Privacy Policy – EasyPhones':'Política de Privacidad – EasyPhones';
+    document.getElementById('back').textContent=x==='en'?'← Back to EasyPhones':'← Volver a EasyPhones';
+    document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-lang')===x);});
+    try{ localStorage.setItem('ep-lang',x); }catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click',function(){ set(b.getAttribute('data-lang')); }); });
+  set(l==='en'?'en':'es');
+})();
+</script>
 </body>

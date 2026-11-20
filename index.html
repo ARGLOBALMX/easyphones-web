@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EasyPhones – Tu teléfono, solo para llamar</title>
+<title data-en="EasyPhones – Your phone, just for calls">EasyPhones – Tu teléfono, solo para llamar</title>
 <meta name="description" content="EasyPhones convierte cualquier teléfono Android o iPhone en un teléfono sencillo solo para llamadas: botones grandes, contactos rápidos y botón SOS. Ideal para adultos mayores, niños, empleados y conductores.">
 <link rel="icon" href="logo.png">
 <style>
@@ -32,6 +32,11 @@
   .btn.ghost:hover{background:var(--green-soft)}
   .nav .btn{padding:10px 20px;font-size:.95rem}
 
+  .navr{display:flex;align-items:center;gap:12px}
+  .lang{display:flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;font-size:.85rem;font-weight:700}
+  .lang button{border:0;background:transparent;color:var(--muted);padding:7px 12px;cursor:pointer;font:inherit}
+  .lang button.on{background:var(--green);color:#fff}
+
   /* Hero */
   .hero{padding:80px 0 72px}
   .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
@@ -41,15 +46,22 @@
   .lead{font-size:1.2rem;color:var(--muted);max-width:34em;margin-bottom:32px}
   .cta{display:flex;gap:14px;flex-wrap:wrap}
 
-  /* Phone mockup */
-  .phone{width:290px;margin:0 auto;background:#111;border-radius:44px;padding:14px;box-shadow:0 30px 60px -20px rgba(11,122,59,.35)}
-  .screen{background:#fff;border-radius:32px;padding:26px 18px 22px;display:flex;flex-direction:column;gap:12px;min-height:540px}
-  .screen .top{text-align:center;font-weight:800;color:var(--green-dark);margin-bottom:4px}
-  .qc{display:flex;align-items:center;gap:12px;background:var(--green);color:#fff;border-radius:16px;padding:14px 16px;font-weight:700;font-size:1.05rem}
-  .qc i{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-style:normal}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
-  .mini{border:2px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-weight:700;font-size:.9rem;color:var(--muted)}
-  .sos{background:var(--red);color:#fff;border-radius:16px;padding:14px;text-align:center;font-weight:800;letter-spacing:.08em}
+  /* Phone mockup (igual a la app) */
+  .phone{width:300px;margin:0 auto;background:#111;border-radius:46px;padding:12px;box-shadow:0 30px 60px -20px rgba(11,122,59,.35)}
+  .screen{background:#f2f1ed;border-radius:36px;padding:10px 14px 16px;display:flex;flex-direction:column;min-height:590px;color:#1c1c1e}
+  .sbar{display:flex;justify-content:space-between;font-size:.72rem;font-weight:700;padding:2px 10px 0}
+  .clock{text-align:center;font-size:3.1rem;font-weight:300;letter-spacing:-.03em;line-height:1;margin-top:22px}
+  .date{text-align:center;color:#6e6e73;font-size:.88rem;margin:6px 0 16px}
+  .qc{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e6e4df;border-radius:16px;padding:9px 10px;margin-bottom:8px}
+  .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.1rem;flex:none}
+  .qc .nm{flex:1;line-height:1.2}
+  .qc .nm b{display:block;font-size:1.05rem;font-weight:600}
+  .qc .nm small{color:#6e6e73;font-size:.74rem}
+  .call{width:40px;height:40px;border-radius:50%;background:#1e9e55;display:grid;place-items:center;flex:none}
+  .call svg,.bb svg{width:18px;height:18px;fill:#fff}
+  .bb{display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-weight:600;font-size:1rem;border-radius:14px;padding:11px}
+  .btns{margin-top:auto;display:grid;gap:7px;padding-top:12px}
+  .btns .two{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 
   /* Sections */
   section{padding:84px 0}
@@ -111,6 +123,7 @@
     .nav ul{display:none}
   }
   @media (max-width:600px){
+    .navr .btn{display:none}
     .g3,.g4,.plans{grid-template-columns:1fr}
     .hero{padding:48px 0}
     section{padding:60px 0}
@@ -124,12 +137,18 @@
   <div class="wrap nav">
     <a href="#" class="brand"><img src="logo.png" alt="" onerror="this.style.display='none'">EasyPhones</a>
     <ul>
-      <li><a href="#funciones">Funciones</a></li>
-      <li><a href="#para-quien">Para quién</a></li>
-      <li><a href="#precios">Precios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#funciones" data-en="Features">Funciones</a></li>
+      <li><a href="#para-quien" data-en="Who it’s for">Para quién</a></li>
+      <li><a href="#precios" data-en="Pricing">Precios</a></li>
+      <li><a href="#contacto" data-en="Contact">Contacto</a></li>
     </ul>
-    <a href="#descargar" class="btn">Descargar</a>
+    <div class="navr">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" class="on">ES</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a href="#descargar" class="btn" data-en="Download">Descargar</a>
+    </div>
   </div>
 </header>
 
@@ -137,27 +156,31 @@
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="tag">Para Android y iPhone</span>
-        <h1>Tu teléfono, <span>solo para llamar.</span></h1>
-        <p class="lead">EasyPhones convierte cualquier smartphone en un teléfono sencillo: botones grandes para tus contactos más importantes, un botón SOS y nada que distraiga.</p>
+        <span class="tag" data-en="For Android and iPhone">Para Android y iPhone</span>
+        <h1 data-en="Your phone, &lt;span&gt;just for calls.&lt;/span&gt;">Tu teléfono, <span>solo para llamar.</span></h1>
+        <p class="lead" data-en="EasyPhones turns any smartphone into a simple phone: big buttons for your most important contacts, an SOS button, and nothing to distract you.">EasyPhones convierte cualquier smartphone en un teléfono sencillo: botones grandes para tus contactos más importantes, un botón SOS y nada que distraiga.</p>
         <div class="cta">
-          <a href="#descargar" class="btn">Pruébala gratis 7 días</a>
-          <a href="#funciones" class="btn ghost">Cómo funciona</a>
+          <a href="#descargar" class="btn" data-en="Try it free for 7 days">Pruébala gratis 7 días</a>
+          <a href="#funciones" class="btn ghost" data-en="How it works">Cómo funciona</a>
         </div>
       </div>
       <div class="phone" aria-hidden="true">
         <div class="screen">
-          <div class="top">EasyPhones</div>
-          <div class="qc"><i>👩</i>Mamá</div>
-          <div class="qc"><i>👨</i>Papá</div>
-          <div class="qc"><i>👵</i>Abuela</div>
-          <div class="qc"><i>🏠</i>Casa</div>
-          <div class="qc"><i>🩺</i>Doctor</div>
-          <div class="row">
-            <div class="mini">📇 Contactos</div>
-            <div class="mini">🔢 Teclado</div>
+          <div class="sbar"><span id="sb-time">12:00</span><span style="display:flex;gap:5px;align-items:center"><svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="22" height="11" viewBox="0 0 22 11"><rect x=".5" y=".5" width="18" height="10" rx="3" fill="none" stroke="#1c1c1e"/><rect x="2" y="2" width="11" height="7" rx="1.5"/><rect x="19.5" y="3.5" width="1.5" height="4" rx=".7"/></svg></span></div>
+          <div class="clock" id="ph-clock">12:00 a.m.</div>
+          <div class="date" id="ph-date">viernes, 1 de enero</div>
+          <div class="qc"><div class="av" style="background:#e0663a" data-en="H">E</div><div class="nm"><b data-en="Husband">Esposo</b><small data-en="Tap to call">Toca para llamar</small></div><div class="call"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></div></div>
+          <div class="qc"><div class="av" style="background:#2457d6" data-en="D">H</div><div class="nm"><b data-en="Daughter">Hija</b><small data-en="Tap to call">Toca para llamar</small></div><div class="call"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></div></div>
+          <div class="qc"><div class="av" style="background:#2457d6" data-en="S">H</div><div class="nm"><b data-en="Son">Hijo</b><small data-en="Tap to call">Toca para llamar</small></div><div class="call"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></div></div>
+          <div class="qc"><div class="av" style="background:#1e9e55" data-en="S">H</div><div class="nm"><b data-en="Sister">Hermana</b><small data-en="Tap to call">Toca para llamar</small></div><div class="call"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></div></div>
+          <div class="qc"><div class="av" style="background:#e0663a" data-en="D">D</div><div class="nm"><b data-en="Doctor">Doctor</b><small data-en="Tap to call">Toca para llamar</small></div><div class="call"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></div></div>
+          <div class="btns">
+            <div class="bb" style="background:#2457d6"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7 0a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM9 13c-3.3 0-7 1.6-7 4v2h14v-2c0-2.4-3.7-4-7-4zm7 0c-.5 0-1 0-1.6.1 1.3.9 2.6 2.2 2.6 3.9v2h5v-2c0-2.4-3.2-4-6-4z"/></svg><span data-en="Contacts">Contactos</span></div>
+            <div class="two">
+              <div class="bb" style="background:#474d55"><svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.2"/><circle cx="12" cy="5" r="2.2"/><circle cx="19" cy="5" r="2.2"/><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="12" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/></svg><span data-en="Keypad">Teclado</span></div>
+              <div class="bb" style="background:#d9383a">SOS&nbsp; 911</div>
+            </div>
           </div>
-          <div class="sos">SOS</div>
         </div>
       </div>
     </div>
@@ -165,72 +188,72 @@
 
   <section id="funciones" class="alt">
     <div class="wrap">
-      <h2>Simple a propósito</h2>
-      <p class="sub">Todo lo necesario para llamar y nada más. Sin redes sociales, sin juegos, sin menús confusos.</p>
+      <h2 data-en="Simple on purpose">Simple a propósito</h2>
+      <p class="sub" data-en="Everything you need to make calls and nothing else. No social media, no games, no confusing menus.">Todo lo necesario para llamar y nada más. Sin redes sociales, sin juegos, sin menús confusos.</p>
       <div class="grid g3">
-        <div class="card"><div class="ic">⭐</div><h3>5 Contactos Rápidos</h3><p>Botones grandes con nombre y foto. Un toque y la llamada sale.</p></div>
-        <div class="card"><div class="ic">🆘</div><h3>Botón SOS</h3><p>Siempre visible, para llamar a emergencias o a un familiar en un instante.</p></div>
-        <div class="card"><div class="ic">📇</div><h3>Contactos del teléfono</h3><p>Acceso opcional a toda la agenda, solo si el administrador lo permite.</p></div>
-        <div class="card"><div class="ic">🔒</div><h3>Modo administrador</h3><p>Un familiar o la empresa configura los contactos con un PIN. El usuario solo llama.</p></div>
-        <div class="card"><div class="ic">📌</div><h3>Fija en pantalla</h3><p>En Android, la app se queda fija en pantalla para que no se salga por accidente.</p></div>
-        <div class="card"><div class="ic">🛡️</div><h3>Tus datos, en tu teléfono</h3><p>No enviamos tus contactos ni tus llamadas a ningún servidor. Sin anuncios.</p></div>
+        <div class="card"><div class="ic">⭐</div><h3 data-en="5 Quick Contacts">5 Contactos Rápidos</h3><p data-en="Big buttons with name and photo. One tap and the call goes through.">Botones grandes con nombre y foto. Un toque y la llamada sale.</p></div>
+        <div class="card"><div class="ic">🆘</div><h3 data-en="SOS button">Botón SOS</h3><p data-en="Always visible, to call emergency services or a family member instantly.">Siempre visible, para llamar a emergencias o a un familiar en un instante.</p></div>
+        <div class="card"><div class="ic">📇</div><h3 data-en="Phone contacts">Contactos del teléfono</h3><p data-en="Optional access to the full address book, only if the administrator allows it.">Acceso opcional a toda la agenda, solo si el administrador lo permite.</p></div>
+        <div class="card"><div class="ic">🔒</div><h3 data-en="Admin mode">Modo administrador</h3><p data-en="A family member or the company sets up contacts with a PIN. The user just calls.">Un familiar o la empresa configura los contactos con un PIN. El usuario solo llama.</p></div>
+        <div class="card"><div class="ic">📌</div><h3 data-en="Pinned to the screen">Fija en pantalla</h3><p data-en="On Android, the app stays pinned to the screen so it can’t be closed by accident.">En Android, la app se queda fija en pantalla para que no se salga por accidente.</p></div>
+        <div class="card"><div class="ic">🛡️</div><h3 data-en="Your data stays on your phone">Tus datos, en tu teléfono</h3><p data-en="We never send your contacts or calls to any server. No ads.">No enviamos tus contactos ni tus llamadas a ningún servidor. Sin anuncios.</p></div>
       </div>
     </div>
   </section>
 
   <section id="para-quien">
     <div class="wrap">
-      <h2>Hecha para quien más lo necesita</h2>
-      <p class="sub">Un mismo teléfono, sin complicaciones, para personas que solo necesitan comunicarse.</p>
+      <h2 data-en="Made for those who need it most">Hecha para quien más lo necesita</h2>
+      <p class="sub" data-en="One phone, no complications, for people who just need to stay in touch.">Un mismo teléfono, sin complicaciones, para personas que solo necesitan comunicarse.</p>
       <div class="grid g4">
-        <div class="card"><div class="ic">👴</div><h3>Adultos mayores</h3><p>Letras y botones grandes. Llaman a su familia sin perderse en menús.</p></div>
-        <div class="card"><div class="ic">🧒</div><h3>Niños</h3><p>Pueden llamar a mamá, papá o la escuela, sin redes ni internet al alcance.</p></div>
-        <div class="card"><div class="ic">💼</div><h3>Empleados</h3><p>Teléfonos de empresa enfocados en el trabajo: solo los contactos que importan.</p></div>
-        <div class="card"><div class="ic">🚗</div><h3>Conductores</h3><p>Menos distracciones al volante, con los contactos clave a un toque.</p></div>
+        <div class="card"><div class="ic">👴</div><h3 data-en="Seniors">Adultos mayores</h3><p data-en="Large text and buttons. They call their family without getting lost in menus.">Letras y botones grandes. Llaman a su familia sin perderse en menús.</p></div>
+        <div class="card"><div class="ic">🧒</div><h3 data-en="Kids">Niños</h3><p data-en="They can call mom, dad or school, with no social media or internet within reach.">Pueden llamar a mamá, papá o la escuela, sin redes ni internet al alcance.</p></div>
+        <div class="card"><div class="ic">💼</div><h3 data-en="Employees">Empleados</h3><p data-en="Company phones focused on work: only the contacts that matter.">Teléfonos de empresa enfocados en el trabajo: solo los contactos que importan.</p></div>
+        <div class="card"><div class="ic">🚗</div><h3 data-en="Drivers">Conductores</h3><p data-en="Fewer distractions behind the wheel, with key contacts one tap away.">Menos distracciones al volante, con los contactos clave a un toque.</p></div>
       </div>
     </div>
   </section>
 
   <section class="alt">
     <div class="wrap">
-      <h2>Lista en 3 pasos</h2>
-      <p class="sub">La configuras una vez y listo.</p>
+      <h2 data-en="Ready in 3 steps">Lista en 3 pasos</h2>
+      <p class="sub" data-en="Set it up once and you’re done.">La configuras una vez y listo.</p>
       <div class="grid g3 steps">
-        <div class="card"><h3>Descarga EasyPhones</h3><p>Instálala desde Google Play o la App Store en el teléfono de quien la va a usar.</p></div>
-        <div class="card"><h3>Agrega los contactos</h3><p>Desde Ajustes, con tu PIN, elige hasta 5 Contactos Rápidos y el número de emergencia.</p></div>
-        <div class="card"><h3>Entrega el teléfono</h3><p>Desde ahora, el teléfono sirve solo para llamar. Fácil y sin sorpresas.</p></div>
+        <div class="card"><h3 data-en="Download EasyPhones">Descarga EasyPhones</h3><p data-en="Install it from Google Play or the App Store on the phone of the person who will use it.">Instálala desde Google Play o la App Store en el teléfono de quien la va a usar.</p></div>
+        <div class="card"><h3 data-en="Add the contacts">Agrega los contactos</h3><p data-en="In Settings, with your PIN, choose up to 5 Quick Contacts and the emergency number.">Desde Ajustes, con tu PIN, elige hasta 5 Contactos Rápidos y el número de emergencia.</p></div>
+        <div class="card"><h3 data-en="Hand over the phone">Entrega el teléfono</h3><p data-en="From now on, the phone is just for calls. Easy, with no surprises.">Desde ahora, el teléfono sirve solo para llamar. Fácil y sin sorpresas.</p></div>
       </div>
     </div>
   </section>
 
   <section id="precios">
     <div class="wrap">
-      <h2>Precios claros</h2>
-      <p class="sub">Descárgala gratis y prueba todas las funciones durante 7 días. Después, decide.</p>
+      <h2 data-en="Simple pricing">Precios claros</h2>
+      <p class="sub" data-en="Download it free and try every feature for 7 days. Then decide.">Descárgala gratis y prueba todas las funciones durante 7 días. Después, decide.</p>
       <div class="plans">
         <div class="plan">
-          <h3>Gratis</h3>
+          <h3 data-en="Free">Gratis</h3>
           <div class="price">$0</div>
-          <p class="note">Para siempre</p>
+          <p class="note" data-en="Forever">Para siempre</p>
           <ul>
-            <li>1 Contacto Rápido</li>
-            <li>Botón de Contactos</li>
-            <li>Botón SOS</li>
-            <li class="no">Contactos Rápidos 2 a 5</li>
-            <li class="no">Teclado para marcar</li>
+            <li data-en="1 Quick Contact">1 Contacto Rápido</li>
+            <li data-en="Contacts button">Botón de Contactos</li>
+            <li data-en="SOS button">Botón SOS</li>
+            <li class="no" data-en="Quick Contacts 2 to 5">Contactos Rápidos 2 a 5</li>
+            <li class="no" data-en="Dial keypad">Teclado para marcar</li>
           </ul>
         </div>
         <div class="plan best">
-          <span class="badge">7 días gratis</span>
-          <h3>Completa</h3>
-          <div class="price">$5 <small>USD · Latinoamérica</small></div>
-          <p class="note">$10 USD en el resto del mundo · pago único</p>
+          <span class="badge" data-en="7 days free">7 días gratis</span>
+          <h3 data-en="Full">Completa</h3>
+          <div class="price">$5 <small data-en="USD · Latin America">USD · Latinoamérica</small></div>
+          <p class="note" data-en="$10 USD in the rest of the world · one-time payment">$10 USD en el resto del mundo · pago único</p>
           <ul>
-            <li>5 Contactos Rápidos</li>
-            <li>Botón de Contactos</li>
-            <li>Botón SOS</li>
-            <li>Teclado para marcar</li>
-            <li>Todas las funciones desbloqueadas</li>
+            <li data-en="5 Quick Contacts">5 Contactos Rápidos</li>
+            <li data-en="Contacts button">Botón de Contactos</li>
+            <li data-en="SOS button">Botón SOS</li>
+            <li data-en="Dial keypad">Teclado para marcar</li>
+            <li data-en="All features unlocked">Todas las funciones desbloqueadas</li>
           </ul>
         </div>
       </div>
@@ -239,11 +262,11 @@
 
   <section id="descargar" class="alt download">
     <div class="wrap">
-      <h2>Descarga EasyPhones</h2>
-      <p class="sub">Muy pronto en las tiendas oficiales.</p>
+      <h2 data-en="Download EasyPhones">Descarga EasyPhones</h2>
+      <p class="sub" data-en="Coming soon to the official app stores.">Muy pronto en las tiendas oficiales.</p>
       <div class="stores">
-        <a class="store" href="#descargar"><span class="sym">▶</span><div><span>Próximamente en</span><b>Google Play</b></div></a>
-        <a class="store" href="#descargar"><span class="sym">🍏</span><div><span>Próximamente en</span><b>App Store</b></div></a>
+        <a class="store" href="#descargar"><span class="sym">▶</span><div><span data-en="Coming soon on">Próximamente en</span><b>Google Play</b></div></a>
+        <a class="store" href="#descargar"><span class="sym">🍏</span><div><span data-en="Coming soon on">Próximamente en</span><b>App Store</b></div></a>
       </div>
     </div>
   </section>
@@ -252,8 +275,8 @@
     <div class="wrap">
       <div class="contact">
         <div>
-          <h2>¿Tienes preguntas?</h2>
-          <p>Escríbenos y con gusto te ayudamos a configurar EasyPhones.</p>
+          <h2 data-en="Have questions?">¿Tienes preguntas?</h2>
+          <p data-en="Write to us and we’ll gladly help you set up EasyPhones.">Escríbenos y con gusto te ayudamos a configurar EasyPhones.</p>
         </div>
         <a class="btn" href="mailto:arglobal3000@gmail.com">arglobal3000@gmail.com</a>
       </div>
@@ -264,9 +287,42 @@
 <footer>
   <div class="wrap">
     <span>© 2026 EasyPhones · Alfonso Francisco Romero Pérez</span>
-    <a href="privacidad.html">Política de Privacidad</a>
+    <a href="privacidad.html" id="privlink" data-en="Privacy Policy">Política de Privacidad</a>
   </div>
 </footer>
 
+<script>
+(function(){
+  var lang='es';
+  try{ lang=localStorage.getItem('ep-lang') || ((navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en'); }catch(e){}
+  var els=[].slice.call(document.querySelectorAll('[data-en]'));
+  els.forEach(function(el){ el.setAttribute('data-es', el.innerHTML); });
+
+  var T={
+    es:{d:['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],m:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+        fmt:function(d,dd,mm){return dd+', '+d.getDate()+' de '+mm;},am:'a.m.',pm:'p.m.'},
+    en:{d:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],m:['January','February','March','April','May','June','July','August','September','October','November','December'],
+        fmt:function(d,dd,mm){return dd+', '+mm+' '+d.getDate();},am:'AM',pm:'PM'}
+  };
+  function clock(){
+    document.getElementById('ph-clock').textContent = lang==='en' ? '12:00 AM' : '12:00 a.m.';
+    document.getElementById('sb-time').textContent = '12:00';
+    document.getElementById('ph-date').textContent = lang==='en' ? 'Friday, January 1' : 'viernes, 1 de enero';
+  }
+  function setLang(l){
+    lang=l;
+    els.forEach(function(el){ el.innerHTML=el.getAttribute('data-'+l); });
+    document.documentElement.lang=l;
+    document.querySelectorAll('.lang button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang')===l); });
+    var pl=document.getElementById('privlink'); if(pl) pl.href='privacidad.html'+(l==='en'?'?lang=en':'');
+    try{ localStorage.setItem('ep-lang', l); }catch(e){}
+    clock();
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+  });
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
